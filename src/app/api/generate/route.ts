@@ -4,7 +4,11 @@ import OpenAI from "openai";
 // Initialize the OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // Make sure to add this to your .env.local file
+  timeout: 45000, // 45 seconds timeout at the client level
 });
+
+// Set timeout for the request
+export const maxDuration = 50; // seconds, for Vercel Pro tier
 
 export async function POST(request: Request) {
   try {
@@ -24,9 +28,17 @@ export async function POST(request: Request) {
       );
     }
 
-    // Call the OpenAI API with GPT-4o mini
+    // Check if knowledge seed is too large
+    if (knowledgeSeed.length > 50000) {
+      return NextResponse.json(
+        { error: "Knowledge Seed is too large. Please reduce the content." },
+        { status: 400 }
+      );
+    }
+
+    // Call the OpenAI API - use a faster model with lower max_tokens
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini", // Using GPT-4o mini model
+      model: "gpt-3.5-turbo", // Using a faster model instead of gpt-4o-mini
       messages: [
         {
           role: "system",
@@ -40,7 +52,7 @@ export async function POST(request: Request) {
         },
       ],
       temperature: 0.7,
-      max_tokens: 2000,
+      max_tokens: 1500, // Reduced from 2000
     });
 
     console.log("API Response:", response); // Log the full response for debugging

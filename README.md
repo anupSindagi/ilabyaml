@@ -1,28 +1,20 @@
-# Clean Next.js Project
+# ilabyaml
 
-A clean Next.js project with Tailwind CSS and shadcn UI components.
+A tool to generate qna.yaml files for Instructlab using AI for Taxonomy repository.
+
+## Features
+
+- Generate YAML configuration for Instructlab
+- AI-powered question and answer generation from knowledge seeds
+- Support for custom domains, repositories, and patterns
+- Interactive UI with tabs for system instructions, user instructions, and knowledge seed
+- Real-time YAML preview with syntax highlighting
+- Copy to clipboard and download functionality
 
 ## Technologies
 
-- Next.js 15
-- React 19
-- Tailwind CSS 4
+- Next.js
+- React
+- Tailwind CSS
 - shadcn UI
-
-## Getting Started
-
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Project Structure
-
-- `src/app` - Contains Next.js app router pages
-- `src/components/ui` - Contains shadcn UI components
-- `src/lib` - Contains utility functions
+- Monaco Editor

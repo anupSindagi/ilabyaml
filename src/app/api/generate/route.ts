@@ -38,7 +38,7 @@ export async function POST(request: Request) {
 
     // Call the OpenAI API - use a faster model with lower max_tokens
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // Using a faster model instead of gpt-4o-mini
+      model: "gpt-4o-mini", // Using GPT-4o mini model
       messages: [
         {
           role: "system",
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         },
       ],
       temperature: 0.7,
-      max_tokens: 1500, // Reduced from 2000
+      max_tokens: 2000, // Reduced from 2000
     });
 
     console.log("API Response:", response); // Log the full response for debugging
